@@ -14,7 +14,7 @@ public class Program {
 		System.out.println("║  Desenvolvido por: DeadKeymon449             Versão: #1    ║");
 		System.out.println("╚════════════════════════════════════════════════════════════╝");
 		System.out.println();
-		
+
 		System.out.print("Saldo atual: R$\s");
 
 		sc = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class Program {
 			throw new IllegalArgumentException("Saldo abaixo de zero!");
 
 		System.out.println();
-		
+
 		System.out.print("Opções: \n");
 		System.out.print("1) Conferir fundos essenciais. \n");
 		System.out.print("2) Conferir fundos alocados. \n");
@@ -36,15 +36,55 @@ public class Program {
 		int respostaUsuario = sc.nextInt();
 
 		System.out.println();
-		
+
 		if (respostaUsuario == 1) {
 			imprimirSessaoFundosEssenciais(saldoEntrada);
+		} else if (respostaUsuario == 2) {
+			imprimirSessaoFundosAlocados(saldoEntrada);
 		}
 
 		sc.close();
 	}
 
-	public static void imprimirSessaoFundosEssenciais(Double saldoEntrada) {
+	private static void imprimirSessaoFundosAlocados(Double saldoEntrada) {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.getDefault());
+
+		System.out.print("Digite uma meta para os seguintes itens: (Digite 0, caso não queira alocar nada)\n");
+		System.out.print("Laptop: R$ ");
+		double valorMetaLaptop = sc.nextDouble();
+		System.out.print("--> Valor a guardar: R$ ");
+		double valorGuardadoLaptop = sc.nextDouble();
+
+		System.out.println();
+		System.out.println("Laptop salvo com sucesso!");
+		System.out.println();
+
+		System.out.print("iPhone 16/17: R$ ");
+		double valorMetaIphone = sc.nextDouble();
+		System.out.print("--> Valor a guardar: R$ ");
+		double valorGuardadoIphone = sc.nextDouble();
+
+		System.out.println();
+		System.out.println("iPhone salvo com sucesso!");
+		System.out.println("* Metas registradas com sucesso! *");
+		System.out.println();
+
+		System.out.println("LISTA DE FUNDOS ALOCADOS:");
+		System.out.printf("1) Laptop: %s meta -> %s guardado.\n", nf.format(valorMetaLaptop), nf.format(valorGuardadoLaptop));
+		System.out.printf("2) iPhone 16/17: %s meta -> %s guardado.\n", nf.format(valorMetaIphone), nf.format(valorGuardadoIphone));
+
+		double saldoDisponível = saldoEntrada - valorGuardadoLaptop - valorGuardadoIphone;
+		
+		System.out.println();
+		System.out.printf("* Valor disponível: %s", nf.format(saldoDisponível));
+		System.out.println();
+		System.out.println();
+		
+		System.out.print("Opções:\n");
+		System.out.println("a) Salvar e sair.");
+	}
+
+	private static void imprimirSessaoFundosEssenciais(Double saldoEntrada) {
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.getDefault());
 
 		System.out.print("ENTRADA: \n");
@@ -57,31 +97,33 @@ public class Program {
 		double valorPadraoGas = sc.nextDouble();
 
 		System.out.println();
-		
+
 		System.out.println("Depósito de valores:");
 		System.out.print("Informe quanto deseja depositar em cada fundo. \n");
 		System.out.print("Digite 0,00 caso não queira depositar nada. \n");
-		
+
 		System.out.print("Alimentação → R$ ");
 		double entradaAlimentacao = sc.nextDouble();
-		
+
 		System.out.print("Higiene pessoal → R$ ");
 		double entradaHigiene = sc.nextDouble();
-		
+
 		System.out.print("Gás → R$ ");
 		double entradaGas = sc.nextDouble();
 
 		System.out.println();
 		System.out.println("Depósitos registrados com sucesso!");
-		
+
 		System.out.println();
 		System.out.println("Fundos essenciais:");
-		System.out.printf("Alimentação: %s → %s guardado.\n", nf.format(valorPadraoAlimentacao), nf.format(entradaAlimentacao));
-		System.out.printf("Higiene pessoal: %s → %s guardado.\n", nf.format(valorPadraoHigienePessoal), nf.format(entradaHigiene));
+		System.out.printf("Alimentação: %s → %s guardado.\n", nf.format(valorPadraoAlimentacao),
+				nf.format(entradaAlimentacao));
+		System.out.printf("Higiene pessoal: %s → %s guardado.\n", nf.format(valorPadraoHigienePessoal),
+				nf.format(entradaHigiene));
 		System.out.printf("Gás: %s → %s guardado.\n", nf.format(valorPadraoGas), nf.format(entradaGas));
-		
+
 		double fundoDisponivel = saldoEntrada - entradaAlimentacao - entradaHigiene - entradaGas;
-		
+
 		System.out.println();
 		System.out.printf("Disponível → %s\n", nf.format(fundoDisponivel));
 	}

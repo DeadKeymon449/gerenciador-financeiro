@@ -18,7 +18,7 @@ Atualmente, o programa possui:
 * [x] Consultar fundos essenciais
 * [x] Exibir o valor guardado em cada fundo
 * [x] Exibir o valor disponível após os fundos essenciais
-* [ ] Consultar fundos alocados
+* [x] Consultar fundos alocados
 * [ ] Calcular despesas mensais
 * [ ] Salvar informações
 * [ ] Adicionar novas categorias de fundos
